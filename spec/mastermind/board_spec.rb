@@ -22,7 +22,6 @@ module Mastermind
     it 'can create 4 digit code in range 1111 - 6666' do
       expect(@code).to be_an(Array)
       expect(@code.length).to eq(4)
-
      end
   end
 end
