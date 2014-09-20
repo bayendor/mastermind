@@ -15,9 +15,9 @@ class Mastermind
       when 'q'
         puts 'Goodbye!'
       when 'i'
-        tweet(parts[1..-1].join(' '))
+        #print instructions
       when 'p'
-        dm(parts[1], parts[2..-1].join(' '))
+        #play the game
       else
         puts "Sorry, I don't know how to #{command}"
       end
