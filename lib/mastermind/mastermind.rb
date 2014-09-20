@@ -2,7 +2,12 @@ class Mastermind
   def initialize
   end
 
+  def clear
+    print "\e[2J\e[f"
+  end
+
   def run
+    clear
     puts 'Welcome to MASTERMIND'
     puts 'Would you like to (p)lay, read the (i)nstructions, or (q)uit?'
     command = ''
@@ -23,6 +28,7 @@ class Mastermind
       end
     end
   end
+
 end
 
 mastermind = Mastermind.new
