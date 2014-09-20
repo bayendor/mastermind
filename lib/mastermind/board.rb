@@ -1,11 +1,9 @@
 class Board
-  require 'SecureRandom'
-
   attr_reader :board, :row, :code
 
   def initialize
     @board = []
-    @row = [0,0,0,0]
+    @row = [0, 0, 0, 0]
     @code = []
   end
 
@@ -24,7 +22,7 @@ class Board
 
   def create_code
     4.times do
-      @code << SecureRandom.random_number(6) + 1
+      @code << 1 + rand(6)
     end
   end
 end
@@ -35,6 +33,5 @@ if __FILE__ == $0
   board.print_board
 
   board.create_code
-  puts "Code is set to #{board.code.to_s}"
+  print "Code is set to #{board.code}"
 end
-
