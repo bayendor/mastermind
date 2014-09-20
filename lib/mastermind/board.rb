@@ -22,7 +22,7 @@ class Board
 
   def create_code
     4.times do
-      @code << 1 + rand(6)
+      @code << rand(1..6)
     end
   end
 end
