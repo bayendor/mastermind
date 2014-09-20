@@ -19,7 +19,7 @@ module Mastermind
       expect(@board.print_board).to eq([])
     end
 
-    it 'can create 4 digit code in range 1111 - 6666' do
+    it 'can create 4 digit code in range 1111 - 4444' do
       expect(@code).to be_an(Array)
       expect(@code.length).to eq(4)
      end

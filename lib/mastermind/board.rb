@@ -22,7 +22,7 @@ class Board
 
   def create_code
     @code = []
-    4.times { @code << rand(1..6) }
+    4.times { @code << rand(1..4) }
     @code
   end
 end
