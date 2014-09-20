@@ -1,9 +1,9 @@
 Gem::Specification.new do |s|
-  s.name          = 'mastermind'
+  s.name          = 'mastermind-bayendor'
   s.version       = '1.0.0'
   s.author        = 'David Bayendor'
   s.email         = 'dbayendor@gmail.com'
-  s.summary       = ''
+  s.summary       = 'Ruby REPL of Mastermind for Turing Project'
   s.description   = File.read(File.join(File.dirname(__FILE__), 'README.md'))
   s.licenses      = 'MIT'
   s.homepage      = ''
