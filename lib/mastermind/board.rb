@@ -1,9 +1,12 @@
 class Board
-  attr_reader :board, :row
+  require 'SecureRandom'
+
+  attr_reader :board, :row, :code
 
   def initialize
     @board = []
     @row = [0,0,0,0]
+    @code = []
   end
 
   def empty_board
@@ -18,8 +21,20 @@ class Board
       puts ''
     end
   end
+
+  def create_code
+    4.times do
+      @code << SecureRandom.random_number(6) + 1
+    end
+  end
 end
 
-board = Board.new
-board.empty_board
-board.print_board
+if __FILE__ == $0
+  board = Board.new
+  board.empty_board
+  board.print_board
+
+  board.create_code
+  puts "Code is set to #{board.code.to_s}"
+end
+
