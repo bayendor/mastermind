@@ -13,22 +13,19 @@ class Mastermind
     command = ''
     while command != 'q'
       printf '> '
-      input = gets.chomp
-      parts = input.split(' ')
-      command = parts[0]
+      command = gets.chomp[0]
       case command
       when 'q'
         puts 'Goodbye!'
       when 'i'
-        #print instructions
+        puts 'print instructions'
       when 'p'
-        #play the game
+        puts 'play the game'
       else
-        puts "Sorry, I don't know how to #{command}"
+        puts "Command #{command} not valid"
       end
     end
   end
-
 end
 
 mastermind = Mastermind.new
