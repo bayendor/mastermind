@@ -3,26 +3,26 @@ class Board
 
   def initialize
     @board = []
-    @row = [0, 0, 0, 0]
-    @code = []
+    @row = '____'
+    @code = ''
   end
 
   def empty_board
-    12.times do
+    10.times do
       @board << row
     end
   end
 
   def print_board
     @board.each do |row|
-      print row
-      puts ''
+      puts row
     end
   end
 
   def create_code
-    @code = []
-    4.times { @code << rand(1..4) }
+    colors = %w(R Y G B)
+    @code = ''
+    4.times { @code << colors.sample }
     @code
   end
 end
@@ -33,5 +33,5 @@ if __FILE__ == $0
   board.print_board
 
   board.create_code
-  print "Code is set to #{board.code}"
+  puts "Code is set to #{board.code}"
 end
