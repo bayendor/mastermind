@@ -19,11 +19,5 @@ module Mastermind
     it 'can print out an empty board' do
       expect(@board.print_board).to eq([])
     end
-
-    it 'can create 4 color code' do
-      expect(@code).to be_a(String)
-      expect(@code.length).to eq(4)
-      expect(@code).to match(/[RYGB]/)
-    end
   end
 end

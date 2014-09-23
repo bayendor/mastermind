@@ -18,13 +18,6 @@ class Board
       puts @game_board[row]
     end
   end
-
-  def create_code
-    colors = %w(R Y G B)
-    @code = []
-    4.times { @code << colors.sample }
-    @code
-  end
 end
 
 if __FILE__ == $0
