@@ -1,46 +1,35 @@
-@code = 'BYYY'
+@code = %w(R R B B)
 
-@guess = 'RGGG'
+@guess = 'BGRB'
 
-def match?
-  @code == @guess
+def color_and_postion?(color, position)
+  color == @code[position]
 end
 
-def number_of_colors
-  result = @code.split('').map do |x|
-    @guess[x] == @code[x]
+def color_only?(color)
+  @code.include?(color)
+end
+
+def evaluate_turn
+  @pegs = { black: [], white: [] }
+  @guess.split('').each_with_index do |color, position|
+    if color_and_postion?(color, position)
+      @pegs[:black] << true
+    elsif color_only?(color)
+      @pegs[:white] << true
+    end
+  end
+  @pegs
+end
+
+def print_turn_result
+  if @pegs[:black].length == 4
+    puts 'Win'
+  else
+    puts "Black Pegs: #{@pegs[:black].count}"
+    puts "White Pegs: #{@pegs[:white].count}"
   end
 end
 
-def white_pegs
-  number_of_colors.count(true)
-end
-
-def correct_position
-  result = []
-  x = 0
-  4.times do
-    result << @code[x].match(@guess[x])
-    x += 1
-  end
-  result
-end
-
-def black_pegs
-  4 - correct_position.count(nil)
-end
-
-
-
-match?
-
-number_of_colors
-
-white_pegs
-
-correct_position
-
-black_pegs
-
-
-
+evaluate_turn
+print_turn_result
