@@ -2,20 +2,20 @@ class Board
   attr_reader :board, :row, :code
 
   def initialize
-    @board = []
+    @game_board = []
     @row = '____'
     @code = ''
   end
 
   def empty_board
     10.times do
-      @board << row
+      @game_board << row
     end
   end
 
   def print_board
-    @board.each do |row|
-      puts row
+    @game_board.each do |row|
+      puts @game_board[row]
     end
   end
 

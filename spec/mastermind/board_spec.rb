@@ -13,7 +13,7 @@ module Mastermind
 
     it 'can create an empty board with 10 rows' do
       expect(@board.empty_board).to eq(10)
-      expect(@board).to eq('____')
+      # expect(@board).to eq('____')
     end
 
     it 'can print out an empty board' do
