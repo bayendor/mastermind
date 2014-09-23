@@ -21,7 +21,7 @@ class Board
 
   def create_code
     colors = %w(R Y G B)
-    @code = ''
+    @code = []
     4.times { @code << colors.sample }
     @code
   end
