@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.licenses      = 'MIT'
   s.homepage      = ''
 
-  s.files         = Dir['{bin,lib,spec}/**/*'] + %w( LICENSE.md README.md )
-  s.test_files    = Dir['spec/**/*']
+  s.files         = Dir['{bin,lib,spec}/*'] + %w( LICENSE.md README.md )
+  s.test_files    = Dir['spec/*']
   s.executables   = ['']
 
   s.required_ruby_version = '>=2.1.0'

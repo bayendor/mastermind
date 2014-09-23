@@ -1,4 +1,4 @@
-require 'mastermind/board'
+require 'board'
 
 module Mastermind
   describe 'Board' do
