@@ -1,5 +1,6 @@
 class Mastermind
   def initialize
+    @game_board = []
   end
 
   def clear
