@@ -31,5 +31,7 @@ def print_turn_result
   end
 end
 
-evaluate_turn
-print_turn_result
+if __FILE__ == $0
+  evaluate_turn
+  print_turn_result
+end
