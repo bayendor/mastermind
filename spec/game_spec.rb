@@ -1,11 +1,9 @@
-require 'game'
-
-module Mastermind
+require 'mastermind'
 
   describe 'Game' do
     before do
-      @game = Game.new
-      @code = @game.create_code(1)
+      @game = Mastermind.new
+      @code = @game.new_code
       @guess = 'RYGB'
     end
 
@@ -36,4 +34,3 @@ module Mastermind
       expect(@game.evaluate_turn).to eq({:black=>[true], :white=>[true]})
     end
   end
-end
