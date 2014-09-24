@@ -1,6 +1,14 @@
+require_relative 'game'
+require 'pry'
+
 class Mastermind
+  GAME_COLORS = %w(R Y G B)
+  attr_accessor :command, :guess, :code
+
   def initialize
-    @game_board = []
+    @command = ''
+    @guess = guess
+    @code = nil
   end
 
   def clear
@@ -11,24 +19,85 @@ class Mastermind
     clear
     puts 'Welcome to MASTERMIND'
     puts 'Would you like to (p)lay, read the (i)nstructions, or (q)uit?'
-    command = ''
-    while command != 'q'
+    # @command = ''
+    while @command != 'q'
       printf '> '
-      command = gets.chomp[0]
-      case command
+      @command = gets.chomp[0]
+      case @command
       when 'q'
         puts 'Goodbye!'
       when 'i'
         puts 'print instructions'
       when 'p'
-        puts 'play the game'
+        play_game
       else
-        puts "Command #{command} not valid"
+        puts "Command #{@command} not valid"
       end
     end
   end
+
+  def play_game
+    @code = new_code
+    1.upto(10) do |i|
+      turn(i)
+      if win?
+        puts "You won in #{i} turns!"
+        return
+      else
+        print_turn_result
+      end
+    end
+    puts 'No more turns'
+  end
+
+  def turn(i)
+    puts "This is chance #{i} of 10"
+    @guess = gets.upcase.strip
+    evaluate_turn
+  end
+
+  def new_code
+    4.times.map do
+      GAME_COLORS.sample
+    end
+  end
+
+  def color_only?(color)
+    @code.include?(color)
+  end
+
+  def color_and_postion?(color, position)
+    color == @code[position]
+  end
+
+  def evaluate_turn
+    @blacks, @whites = 0, 0
+    @guess.split('').each_with_index do |color, position|
+      if color_and_postion?(color, position)
+        @blacks += 1
+      elsif color_only?(color)
+        @whites += 1
+      end
+    end
+  end
+
+  def print_turn_result
+    puts "For testing, code = #{code}"
+    puts "'#{@guess}' has:"
+    puts "Correct color, wrong position: #{@whites}."
+    puts "Correct color, correct position: #{@blacks}."
+  end
+
+  def win?
+    @guess.chars == @code
+  end
+
+  def exit?
+    command == 'q' || command == 'quit'
+  end
 end
 
-mastermind = Mastermind.new
-
-mastermind.run
+if __FILE__ == $0
+  mastermind = Mastermind.new
+  mastermind.run
+end
