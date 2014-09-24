@@ -38,10 +38,10 @@ class MessagePrinter
     program_instructions
   end
 
-  def turn_result(guess, whites, blacks)
+  def turn_result(guess, correct_color_and_position, correct_color)
     puts "'#{guess}' has: "
-    puts "Correct color: #{whites}"
-    puts "Correct position: #{blacks}."
+    puts "Correct colors: #{correct_color}"
+    puts "Correct position: #{correct_color_and_position}."
   end
 
   def game_win

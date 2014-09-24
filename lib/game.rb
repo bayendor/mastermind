@@ -42,7 +42,6 @@ class Game
     when win?
       printer.game_win
     else valid_turn_input?
-      evaluate_turn
       @guess_checker             = GuessChecker.new(code, guess)
       correct_color              = guess_checker.color_only
       correct_color_and_position = guess_checker.color_and_position
@@ -57,30 +56,13 @@ class Game
     end
   end
 
-  # def color_only?(color)
-  #   code.include?(color)
-  # end
-  #
-  # def color_and_position?(color, position)
-  #   color == code[position]
-  # end
-  #
-  # def evaluate_turn
-  #   @blacks, @whites = 0, 0
-  #   @guess.split('').each_with_index do |color, position|
-  #     if color_and_postion?(color, position)
-  #       @blacks += 1
-  #     elsif color_only?(color)
-  #       @whites += 1
-  #     end
-  #   end
-  # end
-
   def add_turn
     @turns += 1
   end
 
   def win?
+    p @guess
+    p @code
     @guess.chars == @code
   end
 
