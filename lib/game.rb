@@ -1,6 +1,13 @@
 class Game
   GAME_COLORS = %w(R Y G B)
-  attr_accessor :command, :guess, :code, :printer, :turns, :whites, :blacks
+  attr_accessor :command,
+                :guess,
+                :code,
+                :printer,
+                :turns,
+                :whites,
+                :blacks,
+                :guess_checker
 
   def initialize(printer = MessagePrinter.new)
     @command = ''
@@ -36,7 +43,10 @@ class Game
       printer.game_win
     else valid_turn_input?
       evaluate_turn
-      printer.turn_result(guess, whites, blacks)
+      @guess_checker             = GuessChecker.new(code, guess)
+      correct_color              = guess_checker.color_only
+      correct_color_and_position = guess_checker.color_and_position
+      printer.turn_result(guess, correct_color_and_position, correct_color)
       add_turn
     end
   end
@@ -47,24 +57,24 @@ class Game
     end
   end
 
-  def color_only?(color)
-    code.include?(color)
-  end
-
-  def color_and_position?(color, position)
-    color == code[position]
-  end
-
-  def evaluate_turn
-    @blacks, @whites = 0, 0
-    @guess.split('').each_with_index do |color, position|
-      if color_and_postion?(color, position)
-        @blacks += 1
-      elsif color_only?(color)
-        @whites += 1
-      end
-    end
-  end
+  # def color_only?(color)
+  #   code.include?(color)
+  # end
+  #
+  # def color_and_position?(color, position)
+  #   color == code[position]
+  # end
+  #
+  # def evaluate_turn
+  #   @blacks, @whites = 0, 0
+  #   @guess.split('').each_with_index do |color, position|
+  #     if color_and_postion?(color, position)
+  #       @blacks += 1
+  #     elsif color_only?(color)
+  #       @whites += 1
+  #     end
+  #   end
+  # end
 
   def add_turn
     @turns += 1
