@@ -38,6 +38,12 @@ class MessagePrinter
     program_instructions
   end
 
+  def turn_result(guess, whites, blacks)
+    puts "'#{guess}' has: "
+    puts "Correct color: #{whites}"
+    puts "Correct position: #{blacks}."
+  end
+
   def game_win
     puts "You win."
     program_instructions
@@ -45,6 +51,5 @@ class MessagePrinter
 
   def not_a_valid_command
     puts "That's not a valid command."
-    program_instructions
   end
 end

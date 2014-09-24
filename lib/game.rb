@@ -1,6 +1,6 @@
 class Game
   GAME_COLORS = %w(R Y G B)
-  attr_accessor :command, :guess, :code, :printer, :turns
+  attr_accessor :command, :guess, :code, :printer, :turns, :whites, :blacks
 
   def initialize(printer = MessagePrinter.new)
     @command = ''
@@ -34,10 +34,10 @@ class Game
       printer.game_quit
     when win?
       printer.game_win
-    else turn_input
-         evaluate_turn
-         print_turn_result
-         add_turn
+    else valid_turn_input?
+      evaluate_turn
+      printer.turn_result(guess, whites, blacks)
+      add_turn
     end
   end
 
@@ -48,11 +48,11 @@ class Game
   end
 
   def color_only?(color)
-    @code.include?(color)
+    code.include?(color)
   end
 
-  def color_and_postion?(color, position)
-    color == @code[position]
+  def color_and_position?(color, position)
+    color == code[position]
   end
 
   def evaluate_turn
@@ -70,13 +70,6 @@ class Game
     @turns += 1
   end
 
-  def print_turn_result
-    puts "For testing, code = #{code}"
-    puts "'#{@guess}' has:"
-    puts "Correct color: #{@whites}."
-    puts "Correct position: #{@blacks}."
-  end
-
   def win?
     @guess.chars == @code
   end
@@ -85,7 +78,7 @@ class Game
     command == 'Q' || command == 'QUIT'
   end
 
-  def turn_input
+  def valid_turn_input?
     @guess == [/[RBYG]/]
   end
 end
