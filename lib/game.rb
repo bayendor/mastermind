@@ -5,9 +5,9 @@ class Game
   def initialize(printer = MessagePrinter.new)
     @command = ''
     @guess = ''
-    @code = nil
+    @code = new_code
     @printer = printer
-    @turns = 0
+    @turns = 1
   end
 
   def clear_screen
@@ -17,23 +17,29 @@ class Game
   def play
     clear_screen
     printer.game_intro
-    while @command != 'q'
-      printf '(p)lay or (q)uit > '
-      @command = gets.chomp[0]
-      case @command
-      when 'q'
-        puts 'Goodbye!'
-      when 'i'
-        puts 'print instructions'
-      when 'p'
-        play_game
-      else
-        puts "Command #{@command} not valid"
-      end
+    until win? || exit?
+      printer.turn_indicator(turns)
+      printer.game_command_request
+      @command = gets.upcase.strip
+      @guess = command
+      process_game_turn
     end
   end
 
   private
+
+  def process_game_turn
+    case
+    when exit?
+      printer.game_quit
+    when win?
+      printer.game_win
+    else turn_input
+         evaluate_turn
+         print_turn_result
+         add_turn
+    end
+  end
 
   def play_game
     @code = new_code
@@ -47,13 +53,6 @@ class Game
       end
     end
     puts 'No more turns'
-  end
-
-  def turn(i)
-    puts "This is chance #{i} of 10"
-    printf "Enter guess > "
-    @guess = gets.upcase.strip
-    evaluate_turn
   end
 
   def new_code
@@ -81,11 +80,15 @@ class Game
     end
   end
 
+  def add_turn
+    @turns += 1
+  end
+
   def print_turn_result
     puts "For testing, code = #{code}"
     puts "'#{@guess}' has:"
-    puts "Correct color, wrong position: #{@whites}."
-    puts "Correct color, correct position: #{@blacks}."
+    puts "Correct color: #{@whites}."
+    puts "Correct position: #{@blacks}."
   end
 
   def win?
@@ -93,10 +96,10 @@ class Game
   end
 
   def exit?
-    command == 'q' || command == 'quit'
+    command == 'Q' || command == 'QUIT'
   end
 
-  def valid_input
+  def turn_input
     @guess == [/[RBYG]/]
   end
 end
