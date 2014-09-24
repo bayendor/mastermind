@@ -41,20 +41,6 @@ class Game
     end
   end
 
-  def play_game
-    @code = new_code
-    1.upto(10) do |i|
-      turn(i)
-      if win?
-        puts "You won in #{i} turns!"
-        return
-      else
-        print_turn_result
-      end
-    end
-    puts 'No more turns'
-  end
-
   def new_code
     4.times.map do
       GAME_COLORS.sample
