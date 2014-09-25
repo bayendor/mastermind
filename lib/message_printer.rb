@@ -38,14 +38,12 @@ class MessagePrinter
     program_instructions
   end
 
-  def turn_result(guess, correct_color_and_position, correct_color)
-    puts "'#{guess}' has: "
-    puts "Correct colors: #{correct_color}"
-    puts "Correct position: #{correct_color_and_position}."
+  def turn_result(guess, correct_position, correct_color)
+    puts "'#{guess}' has: #{correct_color} correct colors, of which #{correct_position} are in the correct position."
   end
 
-  def game_win
-    puts "You win."
+  def game_win(turns)
+    puts "You won in #{turns} turns."
     program_instructions
   end
 
