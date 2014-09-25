@@ -42,8 +42,9 @@ class MessagePrinter
     puts "'#{guess}' has #{correct_color} correct elements with #{correct_position} in the correct position."
   end
 
-  def game_win(code, turns)
-    puts "Congratulations! You guessed the sequence '#{code.join('')}' in #{turns} turns."
+  def game_win(code, turns, end_time)
+    puts "Congratulations! You guessed the sequence '#{code.join('')}' in #{turns} turns.\n
+    It took you #{end_time} seconds."
     program_instructions
   end
 

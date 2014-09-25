@@ -7,7 +7,9 @@ class Game
                 :code,
                 :printer,
                 :turns,
-                :guess_checker
+                :guess_checker,
+                :start_time,
+                :end_time
 
   def initialize(printer = MessagePrinter.new)
     @command = ''
@@ -24,6 +26,7 @@ class Game
   def play
     clear_screen
     printer.game_intro
+    @start_time = Time.now
     until win? || exit?
       printer.turn_indicator(turns)
       printer.game_command_request
@@ -33,14 +36,13 @@ class Game
     end
   end
 
-  # private
-
   def process_game_turn
     case
     when exit?
       printer.game_quit
     when win?
-      printer.game_win(code, turns)
+      end_time = Time.now - @start_time
+      printer.game_win(code, turns, end_time)
     when valid_turn_input?
       check_guess
     else
