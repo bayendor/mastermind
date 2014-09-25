@@ -2,7 +2,7 @@ class CLI
   attr_reader :command, :printer
 
   def initialize
-    @command = ""
+    @command = ''
     @printer = MessagePrinter.new
   end
 
@@ -29,14 +29,14 @@ class CLI
   end
 
   def play?
-    command == "p"
+    command == 'p'
   end
 
   def instructions?
-    command == "i"
+    command == 'i'
   end
 
   def finished?
-    command == "q" || command == "quit"
+    command == 'q' || command == 'quit'
   end
 end
