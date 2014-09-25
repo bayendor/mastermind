@@ -32,7 +32,7 @@ describe 'Game' do
     expect(game.valid_turn_input?).to be nil
   end
 
-  it 'validates incorrect turn input, too short' do
+  it 'validates incorrect turn input, too long' do
     game = Game.new
     game.guess = 'RRRBB'
     expect(game.valid_turn_input?).to be false
