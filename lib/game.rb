@@ -1,3 +1,5 @@
+require_relative 'message_printer'
+
 class Game
   GAME_COLORS = %w(R Y G B)
   attr_accessor :command,
