@@ -20,4 +20,15 @@ describe 'Game' do
     expect(game.turns).to eq 2
   end
 
+  it 'responds to #check_guess' do
+    game = Game.new
+    expect(game.respond_to?(:check_guess)).to be true
+  end
+
+  it 'responds to #valid_turn_input?' do
+    game = Game.new
+    expect(game.respond_to?(:valid_turn_input?)).to be true
+  end
+
+
 end
