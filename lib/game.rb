@@ -1,7 +1,6 @@
 require_relative 'message_printer'
 
 class Game
-  GAME_COLORS = %w(R Y G B)
   attr_accessor :command,
                 :guess,
                 :code,
@@ -17,6 +16,10 @@ class Game
     @code = new_code
     @printer = printer
     @turns = 1
+  end
+
+  def game_colors
+    %w(R Y G B)
   end
 
   def clear_screen
@@ -52,7 +55,7 @@ class Game
 
   def new_code
     4.times.map do
-      GAME_COLORS.sample
+      game_colors.sample
     end
   end
 
