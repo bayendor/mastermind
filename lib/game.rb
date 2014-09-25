@@ -31,7 +31,7 @@ class Game
     end
   end
 
-  private
+  # private
 
   def process_game_turn
     case
@@ -39,8 +39,10 @@ class Game
       printer.game_quit
     when win?
       printer.game_win(code, turns)
-    else valid_turn_input?
+    when valid_turn_input?
       check_guess
+    else
+      printer.not_a_valid_command
     end
   end
 
@@ -64,7 +66,7 @@ class Game
   end
 
   def valid_turn_input?
-    @guess == [/[RBYG]/]
+    /[RBYG]{4}/ =~ @guess && @guess.length == 4
   end
 
   def check_guess
