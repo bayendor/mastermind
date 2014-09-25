@@ -3,23 +3,23 @@ class GuessChecker
 
   def initialize(code, guess)
     @code = code
-    @guess = guess
+    @guess = guess.split('')
   end
 
   def color_and_position
-    guess.split('').each_with_index.count do |color, position|
+    guess.each_with_index.count do |color, position|
       color == code[position]
     end
   end
 
   def color_only
-    working_code_copy = code.dup
+    copy = code.dup
     counter = 0
-    guess.split('').each do |color|
-      if working_code_copy.include?(color)
+    guess.each do |color|
+      if copy.include?(color)
         counter += 1
-        index = working_code_copy.index(color)
-        working_code_copy.delete_at(index)
+        index = copy.index(color)
+        copy.delete_at(index)
       end
     end
     counter
