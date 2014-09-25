@@ -4,7 +4,6 @@ module Mastermind
   describe 'Board' do
     before do
       @board = Board.new
-      @code = @board.create_code
     end
 
     it 'is a Board' do
