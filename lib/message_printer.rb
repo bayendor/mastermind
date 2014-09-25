@@ -17,7 +17,7 @@ class MessagePrinter
   end
 
   def ending
-    puts 'Good bye.'
+    puts 'Goodbye.'
   end
 
   def game_intro
