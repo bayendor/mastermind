@@ -44,6 +44,18 @@ describe 'Game' do
     expect(game.valid_turn_input?).to be nil
   end
 
+  it 'validates incorrect turn input, all wrong' do
+    game = Game.new
+    game.guess = '1$P%'
+    expect(game.valid_turn_input?).to be nil
+  end
+
+  it 'validates empty_string for turn input' do
+    game = Game.new
+    game.guess = ''
+    expect(game.valid_turn_input?).to be nil
+  end
+
   it 'responds to #check_guess' do
     game = Game.new
     expect(game.respond_to?(:check_guess)).to be true
