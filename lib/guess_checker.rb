@@ -12,7 +12,6 @@ class GuessChecker
     end
   end
 
-
   def color_only
     working_code_copy = code.dup
     counter = 0
@@ -20,7 +19,7 @@ class GuessChecker
       if working_code_copy.include?(color)
         counter += 1
         index = working_code_copy.index(color)
-        working_code_copy.delete(index)
+        working_code_copy.delete_at(index)
       end
     end
     counter
