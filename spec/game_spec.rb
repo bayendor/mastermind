@@ -13,22 +13,40 @@ describe 'Game' do
     expect(game.turns).to eq 1
   end
 
-  it 'it increments the turn counter' do
+  it 'increments the turn counter' do
     game = Game.new
     expect(game.turns).to eq 1
     game.add_turn
     expect(game.turns).to eq 2
   end
 
+  it 'validates correct turn input' do
+    game = Game.new
+    game.guess = 'RRRR'
+    expect(game.valid_turn_input?).to be true
+  end
+
+  it 'validates incorrect turn input, too short' do
+    game = Game.new
+    game.guess = 'RRR'
+    expect(game.valid_turn_input?).to be nil
+  end
+
+  it 'validates incorrect turn input, too short' do
+    game = Game.new
+    game.guess = 'RRRBB'
+    expect(game.valid_turn_input?).to be false
+  end
+
+  it 'validates incorrect turn input, wrong colors' do
+    game = Game.new
+    game.guess = 'RRRP'
+    expect(game.valid_turn_input?).to be nil
+  end
+
   it 'responds to #check_guess' do
     game = Game.new
     expect(game.respond_to?(:check_guess)).to be true
   end
-
-  it 'responds to #valid_turn_input?' do
-    game = Game.new
-    expect(game.respond_to?(:valid_turn_input?)).to be true
-  end
-
 
 end
