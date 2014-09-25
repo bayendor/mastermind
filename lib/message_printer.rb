@@ -39,11 +39,11 @@ class MessagePrinter
   end
 
   def turn_result(guess, correct_position, correct_color)
-    puts "'#{guess}' has: #{correct_color} correct colors, of which #{correct_position} are in the correct position."
+    puts "'#{guess}' has #{correct_color} correct elements with #{correct_position} in the correct position."
   end
 
-  def game_win(turns)
-    puts "You won in #{turns} turns."
+  def game_win(code, turns)
+    puts "Congratulations! You guessed the sequence '#{code.join('')}' in #{turns} turns."
     program_instructions
   end
 

@@ -38,7 +38,7 @@ class Game
     when exit?
       printer.game_quit
     when win?
-      printer.game_win(turns)
+      printer.game_win(code, turns)
     else valid_turn_input?
       check_guess
     end
