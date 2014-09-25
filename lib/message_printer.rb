@@ -43,8 +43,7 @@ class MessagePrinter
   end
 
   def game_win(code, turns, end_time)
-    puts "Congratulations! You guessed the sequence '#{code.join('')}' in #{turns} turns.\n
-    It took you #{end_time} seconds."
+    puts "Congratulations! You guessed the sequence '#{code.join('')}' in #{turns} turns in #{end_time.to_i} seconds."
     program_instructions
   end
 

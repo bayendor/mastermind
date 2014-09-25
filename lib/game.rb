@@ -64,7 +64,7 @@ class Game
   end
 
   def win?
-    p @code # for testing
+    # p @code   # for testing
     @guess.chars == @code
   end
 
