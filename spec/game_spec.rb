@@ -32,7 +32,7 @@ describe 'Game' do
     expect(game.valid_turn_input?).to be nil
   end
 
-  it 'validates incorrect turn input, too short' do
+  it 'validates incorrect turn input, too long' do
     game = Game.new
     game.guess = 'RRRBB'
     expect(game.valid_turn_input?).to be false
@@ -41,6 +41,18 @@ describe 'Game' do
   it 'validates incorrect turn input, wrong colors' do
     game = Game.new
     game.guess = 'RRRP'
+    expect(game.valid_turn_input?).to be nil
+  end
+
+  it 'validates incorrect turn input, all wrong' do
+    game = Game.new
+    game.guess = '1$P%'
+    expect(game.valid_turn_input?).to be nil
+  end
+
+  it 'validates empty_string for turn input' do
+    game = Game.new
+    game.guess = ''
     expect(game.valid_turn_input?).to be nil
   end
 
