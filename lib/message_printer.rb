@@ -48,6 +48,6 @@ class MessagePrinter
   end
 
   def not_a_valid_command
-    puts "That's not a valid command."
+    puts "That's not valid input."
   end
 end
