@@ -1,17 +1,16 @@
-require 'cli'
 require 'game'
 require 'message_printer'
 
 describe 'Game' do
-  before do
-    @game = CLI.new
-    @new_code
+
+  it 'can create a new game code' do
+    game = Game.new
+    expect(game.code.to_s).to match(/[RBGY]/)
   end
 
-  it "#color_only? returns 'true' for correct color" do
-    @code = 'RRBB'
-    expect(@game.color_only?('R')).to be_true
+  it 'it correctly sets the turn counter' do
+    game = Game.new
+    expect(game.turns).to eq 1
   end
-
 
 end

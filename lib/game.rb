@@ -5,8 +5,6 @@ class Game
                 :code,
                 :printer,
                 :turns,
-                :whites,
-                :blacks,
                 :guess_checker
 
   def initialize(printer = MessagePrinter.new)
@@ -40,13 +38,9 @@ class Game
     when exit?
       printer.game_quit
     when win?
-      printer.game_win
+      printer.game_win(turns)
     else valid_turn_input?
-      @guess_checker             = GuessChecker.new(code, guess)
-      correct_color              = guess_checker.color_only
-      correct_color_and_position = guess_checker.color_and_position
-      printer.turn_result(guess, correct_color_and_position, correct_color)
-      add_turn
+      check_guess
     end
   end
 
@@ -61,8 +55,7 @@ class Game
   end
 
   def win?
-    p @guess
-    p @code
+    # p @code # for testing
     @guess.chars == @code
   end
 
@@ -73,9 +66,12 @@ class Game
   def valid_turn_input?
     @guess == [/[RBYG]/]
   end
-end
 
-if __FILE__ == $0
-  mastermind = Mastermind.new
-  mastermind.run
+  def check_guess
+    @guess_checker = GuessChecker.new(code, guess)
+    correct_color  = guess_checker.color_only
+    correct_position = guess_checker.color_and_position
+    printer.turn_result(guess, correct_position, correct_color)
+    add_turn
+  end
 end
