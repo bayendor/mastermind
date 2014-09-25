@@ -44,7 +44,7 @@ class Game
     when valid_turn_input?
       check_guess
     else
-      printer.not_a_valid_command
+      printer.not_a_valid_command(@guess.length)
     end
   end
 
@@ -59,7 +59,7 @@ class Game
   end
 
   def win?
-    # p @code # for testing
+    p @code # for testing
     @guess.chars == @code
   end
 

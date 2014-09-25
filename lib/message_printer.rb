@@ -47,7 +47,16 @@ class MessagePrinter
     program_instructions
   end
 
-  def not_a_valid_command
-    puts "That's not valid input."
+  def not_a_valid_command(guess_length)
+    case
+    when
+      guess_length < 4
+      puts 'Guess is too short'
+    when
+      guess_length > 4
+      puts 'Guess is too long'
+    else
+      puts "That's not valid input: (r, y, g, b)."
+    end
   end
 end
